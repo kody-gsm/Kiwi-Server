@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class Attend {
-    @EmbeddedId
-    private AttendId id;
+    @Id
+    private Long id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
     @MapsId("id")
     private User user;
@@ -41,8 +41,8 @@ public class Attend {
     private Short dise_outing;
 
     @Builder
-    public Attend(User user, Short etc_absent, Short absent, Short reco_absent, Short dise_absent, Short etc_late, Short late, Short dise_late, Short reco_late, Short early_leave, Short dise_leave, Short etc_leave, Short reco_leave, Short attendance,Short outing,Short dise_outing,Short reco_outing,Short etc_outing){
-        this.id = new AttendId(user.getId());
+    public Attend(Long id, User user, Short etc_absent, Short absent, Short reco_absent, Short dise_absent, Short etc_late, Short late, Short dise_late, Short reco_late, Short early_leave, Short dise_leave, Short etc_leave, Short reco_leave, Short attendance,Short outing,Short dise_outing,Short reco_outing,Short etc_outing){
+        this.id = id;
         this.user = user;
         this.etc_absent = etc_absent;
         this.absent = absent;
