@@ -44,6 +44,9 @@ public class AuthService {
                     .role(Role.valueOf(Role.ROLE_STUDENT.getAuthority()))
                     .build();
             userRepository.save(user);
+            System.out.println(user);
+            System.out.println(user.getId());
+
             attendService.CreateAttendance(user.getId());
             selectionService.create(user.getId());
         } else throw new RuntimeException("중복 사용자 이메일");

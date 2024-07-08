@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Attend {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
-    @MapsId("id")
     private User user;
 
     private Short attendance; //출석

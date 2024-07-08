@@ -24,8 +24,7 @@ public class User extends BaseTime{
     @Column(length = 60)
     private String password;
 
-    @Column(length = 4)
-    private String schoolNumber;
+    private Short schoolNumber;
 
     @Column(length = 6)
     private String email;
@@ -43,7 +42,7 @@ public class User extends BaseTime{
     private Selection selection;
 
     @Builder
-    public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender) {
+    public User(Long ID, String username,String password, Short schoolNumber, String email, Role role, Gender gender) {
         this.id = ID;
         this.username = username;
         this.password = password;

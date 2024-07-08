@@ -33,7 +33,7 @@ public class SelectionService {
         selectionRepository.save(selection);
     }
 
-    public List<FilterResponse> findByIdAndMode(Long id, SelectionMode mode){
+    public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
         if(id == null && mode == null){
             return null;
         } else if (mode == null) {

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserResponse {
-    private String schoolNumber;
+    private Short schoolNumber;
     private String gender;
     private String username;
 

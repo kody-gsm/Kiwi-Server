@@ -26,6 +26,4 @@ public class AuthController {
         SigninResponse response = authService.signinUser(request);
         return ResponseEntity.ok().body(response);
     }
-
-
 }

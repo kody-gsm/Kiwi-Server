@@ -19,7 +19,8 @@ public class UserService {
     public UserResponse getMyPage() {
         User user = authService.getCurrentUser();
         Attend attend = user.getAttend();
-        UserResponse userResponse = new UserResponse(
+
+        return new UserResponse(
                 user.getSchoolNumber(),
                 user.getGender().toString(),
                 user.getUsername(),
@@ -41,7 +42,5 @@ public class UserService {
                 attend.getReco_outing(),
                 attend.getDise_outing()
         );
-
-        return userResponse;
     }
 }
