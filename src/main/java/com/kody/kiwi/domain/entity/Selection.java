@@ -12,17 +12,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class Selection {
-    @EmbeddedId
-    private SelectionId id;
+    @Id
+    private Long id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "id")
     @MapsId("id")
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    private SelectionMode mode;
+
     @Builder
-    public Selection(User user) {
-        this.id = new SelectionId(user.getId(), SelectionMode.NONE);
+    public Selection(User user,Long id,SelectionMode mode) {
+        this.id = id;
         this.user = user;
+        this.mode = mode;
     }
 }

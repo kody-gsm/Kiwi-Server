@@ -36,11 +36,11 @@ public class User extends BaseTime{
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Attend> attends = new ArrayList<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Attend attend;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Selection> selection = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Selection selection;
 
     @Builder
     public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender) {

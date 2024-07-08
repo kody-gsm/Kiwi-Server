@@ -6,6 +6,6 @@ import lombok.Data;
 public class FilterResponse {
     private String Gender;
     private String username;
-    private Short id;
+    private Long id;
     private String mode;
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CheckRequest {
     private String username;
-    private Short id;
+    private String schoolNumber;
     private Gender gender;
     private Short attendance;
 
@@ -35,8 +35,8 @@ public class CheckRequest {
     private Short dise_outing;
 
     @Builder
-    public CheckRequest(Short id,Short etc_absent, Short absent, Short reco_absent, Short dise_absent, Short etc_late, Short late, Short dise_late, Short reco_late, Short early_leave, Short dise_leave, Short etc_leave, Short reco_leave, Short attendance,String username,Gender gender,Short outing,Short dise_outing,Short reco_outing,Short etc_outing){
-        this.id=id;
+    public CheckRequest(String schoolNumber,Short etc_absent, Short absent, Short reco_absent, Short dise_absent, Short etc_late, Short late, Short dise_late, Short reco_late, Short early_leave, Short dise_leave, Short etc_leave, Short reco_leave, Short attendance,String username,Gender gender,Short outing,Short dise_outing,Short reco_outing,Short etc_outing){
+        this.schoolNumber=schoolNumber;
         this.etc_absent=etc_absent;
         this.absent=absent;
         this.reco_absent=reco_absent;

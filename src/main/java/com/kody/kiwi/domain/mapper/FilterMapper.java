@@ -12,8 +12,8 @@ import java.util.List;
 @Transactional
 public interface FilterMapper {
     @Select("SELECT u.gender,u.username,u.id,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.id >= #{id} AND u.id <= #{id}+418")
-    List<FilterResponse> getFilterGrade(SelectionMode mode, Short id);
+    List<FilterResponse> getFilterGrade(SelectionMode mode, Long id);
 
     @Select("SELECT u.gender,u.username,u.id,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.id >= #{id} AND u.id <= #{id}+18")
-    List<FilterResponse> getFilterClass(SelectionMode mode, Short id);
+    List<FilterResponse> getFilterClass(SelectionMode mode, Long id);
 }

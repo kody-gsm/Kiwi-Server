@@ -2,7 +2,6 @@ package com.kody.kiwi.domain.service;
 
 import com.kody.kiwi.domain.entity.Attend;
 import com.kody.kiwi.domain.entity.User;
-import com.kody.kiwi.domain.mapper.AttendMapper;
 import com.kody.kiwi.domain.repository.AttendRepository;
 import com.kody.kiwi.domain.repository.UserRepository;
 import com.kody.kiwi.domain.request.CheckRequest;
@@ -18,15 +17,6 @@ import java.util.Optional;
 public class AttendService {
     private final AttendRepository attendRepository;
     private final UserRepository userRepository;
-    private final AttendMapper attendMapper;
-
-    public Optional<CheckRequest> SelectAttendance(Long id) {
-        if (attendMapper.findAttendanceById(id).isPresent()) {
-            return attendMapper.findAttendanceById(id);
-        }
-        return Optional.empty();
-    }
-
     public void CreateAttendance(Long id) {
         User user = userRepository.findUserById(id);
         Attend attend = attendRepository.save(
