@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Selection {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "id")
-    @MapsId("id")
     private User user;
 
     @Enumerated(EnumType.STRING)
