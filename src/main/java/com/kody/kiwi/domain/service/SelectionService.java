@@ -38,21 +38,31 @@ public class SelectionService {
         if(id == null && mode == null){
             return null;
         } else if (mode == null) {
-            if(id / 100 % 10 != 0){
-                return userMapper.getClassUser(id);
+            if (id / 100 > 9){
+                if(id / 100 % 10 != 0){
+                    return userMapper.getGradeClassUser(id);
+                }
+                else {
+                    return userMapper.getGradeUser(id);
+                }
             }
-            else {
-                return userMapper.getGradeUser(id);
+            else{
+                return userMapper.getClassUser(id);
             }
         } else if (id == null) {
             return selectionMapper.getModeUser(mode);
         }
         else {
-            if (id / 100 % 10 != 0){
-                return filterMapper.getFilterClass(mode,id);
+            if (id / 100 > 9){
+                if (id / 100 % 10 != 0){
+                    return filterMapper.getFilterClass(mode,id);
+                }
+                else {
+                    return filterMapper.getFilterGrade(mode,id);
+                }
             }
             else {
-                return filterMapper.getFilterGrade(mode,id);
+                return filterMapper.getClassUser(mode,id);
             }
         }
     }
