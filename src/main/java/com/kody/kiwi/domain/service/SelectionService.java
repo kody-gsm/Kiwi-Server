@@ -29,6 +29,7 @@ public class SelectionService {
         User user = userRepository.findUserById(id);
         Selection selection = Selection.builder()
                 .user(user)
+                .mode(SelectionMode.NONE)
                 .build();
         selectionRepository.save(selection);
     }
