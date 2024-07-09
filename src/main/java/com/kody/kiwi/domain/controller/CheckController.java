@@ -19,7 +19,6 @@ public class CheckController {
     @PostMapping("/check")
     public ResponseEntity<?> check(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
-        System.out.println(grade);
         if (grade == null || grade == 0)
             return ResponseEntity.ok(checkService.allUser());
         else
