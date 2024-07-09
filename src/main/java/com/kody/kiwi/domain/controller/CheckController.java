@@ -20,19 +20,16 @@ public class CheckController {
     public ResponseEntity<?> check(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
         System.out.println(grade);
-        if (grade != 0)
-            return ResponseEntity.ok(checkService.gradeUser(grade));
-        else
+        if (grade == null || grade == 0)
             return ResponseEntity.ok(checkService.allUser());
+        else
+            return ResponseEntity.ok(checkService.gradeUser(grade));
     }
 
     @PostMapping("/filter")
     public ResponseEntity<?> filter(@RequestBody FilterRequest filterRequest){
         Short grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
-
-        System.out.println(grade);
-        System.out.println(mode);
 
         return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
     }
