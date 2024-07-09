@@ -49,7 +49,7 @@ public class SelectionService {
             else{
                 return userMapper.getClassUser(id);
             }
-        } else if (id == null) {
+        } else if (id == null|| id == 0) {
             return selectionMapper.getModeUser(mode);
         }
         else {
