@@ -4,12 +4,9 @@ import com.kody.kiwi.domain.entity.Attend;
 import com.kody.kiwi.domain.entity.User;
 import com.kody.kiwi.domain.repository.AttendRepository;
 import com.kody.kiwi.domain.repository.UserRepository;
-import com.kody.kiwi.domain.request.CheckRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

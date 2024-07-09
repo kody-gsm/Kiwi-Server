@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper
 @Transactional
 public interface SelectionMapper {
-    @Select("SELECT u.gender,u.username,u.id,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode}")
+    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode}")
     List<FilterResponse> getModeUser(SelectionMode mode);
 }
