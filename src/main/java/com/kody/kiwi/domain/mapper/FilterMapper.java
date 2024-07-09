@@ -16,4 +16,7 @@ public interface FilterMapper {
 
     @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.school_number >= #{schoolNumber} AND u.school_number <= #{schoolNumber}+18")
     List<FilterResponse> getFilterClass(SelectionMode mode, Short schoolNumber);
+
+    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.school_number >= #{schoolNumber} + 1000 AND u.school_number <= #{schoolNumber} + 18 + 1000 OR u.school_number >= #{schoolNumber} + 2000 AND u.school_number <= #{schoolNumber} + 18 + 2000 OR u.school_number >= #{schoolNumber} + 3000 AND u.school_number <= #{schoolNumber} + 18 + 3000")
+    List<FilterResponse> getClassUser(SelectionMode mode,Short schoolNumber);
 }
