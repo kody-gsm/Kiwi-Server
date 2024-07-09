@@ -15,7 +15,7 @@ public class Attend {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     private User user;
 
     private Short attendance; //출석
