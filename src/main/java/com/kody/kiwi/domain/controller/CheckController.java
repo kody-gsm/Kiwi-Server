@@ -26,5 +26,11 @@ public class CheckController {
             return ResponseEntity.ok(checkService.allUser());
     }
 
+    @PostMapping("/filter")
+    public ResponseEntity<?> filter(@RequestBody FilterRequest filterRequest){
+        Short grade = filterRequest.getGrade();
+        SelectionMode mode = filterRequest.getMode();
 
+        return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
+    }
 }
