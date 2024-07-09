@@ -31,9 +31,6 @@ public class CheckController {
         Short grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
-        System.out.println(grade);
-        System.out.println(mode);
-
         return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
     }
 }
