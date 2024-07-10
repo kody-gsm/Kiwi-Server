@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CheckController {
     private final CheckService checkService;
     private final SelectionService selectionService;
+
     @PostMapping("/check")
     public ResponseEntity<?> check(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
-        System.out.println(grade);
+
         if (grade == null || grade == 0)
             return ResponseEntity.ok(checkService.allUser());
         else
@@ -31,6 +32,20 @@ public class CheckController {
         Short grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
-        return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
+        if(mode != null){
+            return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
+        }
+
+        if (grade == null || grade == 0)
+            return ResponseEntity.ok(checkService.allUser());
+        else
+            return ResponseEntity.ok(checkService.gradeUser(grade));
+    }
+
+    @PostMapping("/alltandance")
+    public void alltendance(@RequestBody CheckRequest checkRequest){
+        Short grade = checkRequest.getGrade();
+
+        checkService.atSelect(grade);
     }
 }

@@ -24,6 +24,7 @@ public class User extends BaseTime{
     @Column(length = 60)
     private String password;
 
+    @Column(name = "school_number")
     private Short schoolNumber;
 
     @Column(length = 6)
