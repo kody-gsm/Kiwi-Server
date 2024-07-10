@@ -65,9 +65,9 @@ public class AuthService {
     }
     @Transactional
     public User getCurrentUser() {
-        String userId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        log.info(userId);
-        return userRepository.findById(Long.parseLong(userId))
+        Short userId = Short.valueOf(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        log.info(String.valueOf(userId));
+        return userRepository.findById(Long.parseLong(String.valueOf(userId)))
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

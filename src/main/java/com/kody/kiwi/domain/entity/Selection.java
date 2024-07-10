@@ -24,6 +24,19 @@ public class Selection {
 
     @Enumerated(EnumType.STRING)
     private SelectionMode mode;
+
+    private LocalDate date;
+
+    @PrePersist
+    public void prePersist() {
+        date = LocalDate.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        date = LocalDate.now();
+    }
+
     @Builder
     public Selection(User user,Long id,SelectionMode mode) {
         this.id = id;

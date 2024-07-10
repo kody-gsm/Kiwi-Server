@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,35 +23,60 @@ public class SelectionService {
     private final UserMapper userMapper;
     private final SelectionMapper selectionMapper;
     private final FilterMapper filterMapper;
+    private final CheckService checkService;
+    private final CalendarService calendarService;
 
     public void create(Long id){
         User user = userRepository.findUserById(id);
         Selection selection = Selection.builder()
                 .user(user)
+                .mode(SelectionMode.NONE)
                 .build();
         selectionRepository.save(selection);
+        calendarService.CalendarMC(id);
     }
 
-    public List<FilterResponse> findByIdAndMode(Long id, SelectionMode mode){
-        if(id == null && mode == null){
-            return null;
+    public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
+        if((id == null || id == 0) && mode == null){
+            return checkService.allUser();
         } else if (mode == null) {
-            if(id / 100 % 10 != 0){
+            if (id >= 1000){
+                if(id / 100 % 10 != 0){
+                    return userMapper.getGradeClassUser(id);
+                }
+                else {
+                    return userMapper.getGradeUser(id);
+                }
+            }
+            else{
                 return userMapper.getClassUser(id);
             }
-            else {
-                return userMapper.getGradeUser(id);
-            }
-        } else if (id == null) {
+        } else if (id == null || id == 0) {
             return selectionMapper.getModeUser(mode);
         }
         else {
-            if (id / 100 % 10 != 0){
-                return filterMapper.getFilterClass(mode,id);
+            if (id >= 1000){
+                if (id / 100 % 10 != 0){
+                    return filterMapper.getFilterClass(mode,id);
+                }
+                else {
+                    return filterMapper.getFilterGrade(mode,id);
+                }
             }
             else {
-                return filterMapper.getFilterGrade(mode,id);
+                return filterMapper.getClassUser(mode,id);
             }
+        }
+    }
+
+    public void selectmode(SelectionMode mode){
+        for (long i = 1; i <= userRepository.count(); i++) {
+            Selection selection = Selection.builder()
+                    .id(i)
+                    .mode(mode)
+                    .build();
+            selectionRepository.save(selection);
+            calendarService.CalendarMC(i);
         }
     }
 }

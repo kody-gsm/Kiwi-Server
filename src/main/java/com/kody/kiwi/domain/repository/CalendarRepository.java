@@ -1,12 +1,11 @@
 package com.kody.kiwi.domain.repository;
 
-import com.kody.kiwi.domain.entity.Selection;
+import com.kody.kiwi.domain.entity.calendar.Calendar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface SelectionRepository extends JpaRepository<Selection, Long> {
-    Selection findSelectionById(Long id);
+public interface CalendarRepository extends JpaRepository<Calendar, Long> {
 }
