@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +35,7 @@ public class SelectionService {
     }
 
     public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
-        if(id == null && mode == null){
+        if((id == null || id == 0) && mode == null){
             return checkService.allUser();
         } else if (mode == null) {
             if (id >= 1000){
@@ -50,7 +49,7 @@ public class SelectionService {
             else{
                 return userMapper.getClassUser(id);
             }
-        } else if (id == null|| id == 0) {
+        } else if (id == null || id == 0) {
             return selectionMapper.getModeUser(mode);
         }
         else {
