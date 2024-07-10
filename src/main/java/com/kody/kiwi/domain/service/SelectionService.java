@@ -24,6 +24,7 @@ public class SelectionService {
     private final SelectionMapper selectionMapper;
     private final FilterMapper filterMapper;
     private final CheckService checkService;
+    private final CalendarService calendarService;
 
     public void create(Long id){
         User user = userRepository.findUserById(id);
@@ -32,6 +33,7 @@ public class SelectionService {
                 .mode(SelectionMode.NONE)
                 .build();
         selectionRepository.save(selection);
+        calendarService.CalendarMC(id);
     }
 
     public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
@@ -64,6 +66,17 @@ public class SelectionService {
             else {
                 return filterMapper.getClassUser(mode,id);
             }
+        }
+    }
+
+    public void selectmode(SelectionMode mode){
+        for (long i = 1; i <= userRepository.count(); i++) {
+            Selection selection = Selection.builder()
+                    .id(i)
+                    .mode(mode)
+                    .build();
+            selectionRepository.save(selection);
+            calendarService.CalendarMC(i);
         }
     }
 }
