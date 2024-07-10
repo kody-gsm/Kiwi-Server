@@ -47,7 +47,7 @@ public class CheckController {
             checkService.atSelect(grade);
             return ResponseEntity.ok("실행 완료됐습니다.");
         }
-        else if (grade < 100 || grade > 3418)
+        else if (grade < 100 || grade >= 3500)
             return ResponseEntity.badRequest().body("값이 잘못되었습니다.");
         else {
             checkService.atSelect(grade);
