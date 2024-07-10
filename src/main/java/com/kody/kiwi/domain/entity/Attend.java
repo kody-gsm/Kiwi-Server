@@ -1,9 +1,12 @@
 package com.kody.kiwi.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "attend")
@@ -11,11 +14,11 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Attend {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
-    @MapsId("id")
     private User user;
 
     private Short attendance; //출석
@@ -39,7 +42,6 @@ public class Attend {
     private Short outing;
     private Short reco_outing;
     private Short dise_outing;
-
     @Builder
     public Attend(Long id, User user, Short etc_absent, Short absent, Short reco_absent, Short dise_absent, Short etc_late, Short late, Short dise_late, Short reco_late, Short early_leave, Short dise_leave, Short etc_leave, Short reco_leave, Short attendance,Short outing,Short dise_outing,Short reco_outing,Short etc_outing){
         this.id = id;
