@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +23,8 @@ public class SelectionService {
     private final UserMapper userMapper;
     private final SelectionMapper selectionMapper;
     private final FilterMapper filterMapper;
+    private final CheckService checkService;
+    private final CalendarService calendarService;
 
     public void create(Long id){
         User user = userRepository.findUserById(id);
@@ -32,11 +33,12 @@ public class SelectionService {
                 .mode(SelectionMode.NONE)
                 .build();
         selectionRepository.save(selection);
+        calendarService.CalendarMC(id);
     }
 
     public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
-        if(id == null && mode == null){
-            return null;
+        if((id == null || id == 0) && mode == null){
+            return checkService.allUser();
         } else if (mode == null) {
             if (id >= 1000){
                 if(id / 100 % 10 != 0){
@@ -49,7 +51,7 @@ public class SelectionService {
             else{
                 return userMapper.getClassUser(id);
             }
-        } else if (id == null|| id == 0) {
+        } else if (id == null || id == 0) {
             return selectionMapper.getModeUser(mode);
         }
         else {
@@ -64,6 +66,17 @@ public class SelectionService {
             else {
                 return filterMapper.getClassUser(mode,id);
             }
+        }
+    }
+
+    public void selectmode(SelectionMode mode){
+        for (long i = 1; i <= userRepository.count(); i++) {
+            Selection selection = Selection.builder()
+                    .id(i)
+                    .mode(mode)
+                    .build();
+            selectionRepository.save(selection);
+            calendarService.CalendarMC(i);
         }
     }
 }
