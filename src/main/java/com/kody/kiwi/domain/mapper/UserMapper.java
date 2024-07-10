@@ -1,7 +1,6 @@
 package com.kody.kiwi.domain.mapper;
-import com.kody.kiwi.domain.response.CheckResponse;
+
 import com.kody.kiwi.domain.response.FilterResponse;
-import com.kody.kiwi.domain.response.UserResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.transaction.annotation.Transactional;
