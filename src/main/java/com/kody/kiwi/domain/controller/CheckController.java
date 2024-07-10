@@ -20,7 +20,6 @@ public class CheckController {
     @PostMapping("/check")
     public ResponseEntity<?> check(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
-        System.out.println(grade + "check");
 
         if (grade == null || grade == 0)
             return ResponseEntity.ok(checkService.allUser());
@@ -33,15 +32,9 @@ public class CheckController {
         Short grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
-        System.out.println(grade);
-        System.out.println(mode);
-
         if(mode != null){
             return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
         }
-
-        System.out.println(grade+"grade");
-        System.out.println(mode+"mode");
 
         if (grade == null || grade == 0)
             return ResponseEntity.ok(checkService.allUser());
@@ -52,9 +45,7 @@ public class CheckController {
     @PostMapping("/alltandance")
     public void alltendance(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
-        if (grade == null || grade == 0)
-            checkService.alltendance();
-        else
 
+        checkService.atSelect(grade);
     }
 }

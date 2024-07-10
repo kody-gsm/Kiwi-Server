@@ -38,7 +38,7 @@ public class SelectionService {
         if(id == null && mode == null){
             return null;
         } else if (mode == null) {
-            if (id / 100 > 9){
+            if (id >= 1000){
                 if(id / 100 % 10 != 0){
                     return userMapper.getGradeClassUser(id);
                 }
@@ -53,7 +53,7 @@ public class SelectionService {
             return selectionMapper.getModeUser(mode);
         }
         else {
-            if (id / 100 > 9){
+            if (id >= 1000){
                 if (id / 100 % 10 != 0){
                     return filterMapper.getFilterClass(mode,id);
                 }

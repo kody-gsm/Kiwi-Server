@@ -27,11 +27,19 @@ public class CheckService {
         selectionMapper.alltendance();
     }
     
-    public void attendanceAdd(Short sh){
-        if (sh == null || sh == 0 ){
+    public void atSelect(Short sh){
+        if (sh == null || sh == 0){
             alltendance();
-        } else if (sh/100%10 > 9) {
-            
+        } else if (sh >= 1000) {
+            if (sh / 100 % 10 != 0){
+                selectionMapper.clgradance(sh);
+            }
+            else {
+                selectionMapper.gradance(sh);
+            }
+        }
+        else {
+            selectionMapper.clattdance(sh);
         }
     }
 }
