@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ErrorRequest {
+public class ServiceErrorRequest {
     @NotBlank
     private String title;
     @NotBlank

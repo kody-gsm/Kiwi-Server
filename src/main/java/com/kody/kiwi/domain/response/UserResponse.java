@@ -10,6 +10,8 @@ public class UserResponse {
     private String gender;
     private String username;
 
+    private String mode;
+
     private short attendance;
     private short absent;
     private short etcAbsent;

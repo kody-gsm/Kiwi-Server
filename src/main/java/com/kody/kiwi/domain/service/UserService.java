@@ -1,6 +1,7 @@
 package com.kody.kiwi.domain.service;
 
 import com.kody.kiwi.domain.entity.Attend;
+import com.kody.kiwi.domain.entity.Selection;
 import com.kody.kiwi.domain.entity.User;
 import com.kody.kiwi.domain.repository.UserRepository;
 import com.kody.kiwi.domain.response.UserResponse;
@@ -14,16 +15,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final AuthService authService;
-    private final UserRepository userRepository;
 
     public UserResponse getMyPage() {
         User user = authService.getCurrentUser();
         Attend attend = user.getAttend();
-
+        Selection selection = user.getSelection();  
+        String mode = String.valueOf(selection.getMode());
+        UserResponse userResponse = new UserResponse(
         return new UserResponse(
                 user.getSchoolNumber(),
                 user.getGender().toString(),
                 user.getUsername(),
+                mode,
                 attend.getAttendance(),
                 attend.getAbsent(),
                 attend.getEtc_absent(),
