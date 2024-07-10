@@ -24,6 +24,7 @@ public class SelectionService {
     private final UserMapper userMapper;
     private final SelectionMapper selectionMapper;
     private final FilterMapper filterMapper;
+    private final CheckService checkService;
 
     public void create(Long id){
         User user = userRepository.findUserById(id);
@@ -36,7 +37,7 @@ public class SelectionService {
 
     public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
         if(id == null && mode == null){
-            return null;
+            return checkService.allUser();
         } else if (mode == null) {
             if (id >= 1000){
                 if(id / 100 % 10 != 0){

@@ -32,20 +32,26 @@ public class CheckController {
         Short grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
-        if(mode != null){
-            return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
-        }
-
         if (grade == null || grade == 0)
-            return ResponseEntity.ok(checkService.allUser());
+            return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
+        else if (grade < 100 || grade >= 3500)
+            return ResponseEntity.badRequest().body("잘못된 값입니다.");
         else
-            return ResponseEntity.ok(checkService.gradeUser(grade));
+            return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
     }
 
-    @PostMapping("/alltandance")
-    public void alltendance(@RequestBody CheckRequest checkRequest){
+    @PostMapping("/alltendance")
+    public ResponseEntity<?> alltendance(@RequestBody CheckRequest checkRequest){
         Short grade = checkRequest.getGrade();
-
-        checkService.atSelect(grade);
+        if (grade == null || grade == 0) {
+            checkService.atSelect(grade);
+            return ResponseEntity.ok("실행 완료됐습니다.");
+        }
+        else if (grade < 100 || grade > 3418)
+            return ResponseEntity.badRequest().body("값이 잘못되었습니다.");
+        else {
+            checkService.atSelect(grade);
+            return ResponseEntity.ok("실행 완료됐습니다.");
+        }
     }
 }
