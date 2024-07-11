@@ -2,6 +2,7 @@ package com.kody.kiwi.domain.service;
 
 import com.kody.kiwi.domain.entity.User;
 import com.kody.kiwi.domain.entity.enums.Gender;
+import com.kody.kiwi.domain.entity.enums.SelectionMode;
 import com.kody.kiwi.domain.repository.UserRepository;
 import com.kody.kiwi.domain.request.SigninRequest;
 import com.kody.kiwi.domain.request.SignupRequest;
