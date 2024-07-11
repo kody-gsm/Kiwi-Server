@@ -15,18 +15,12 @@ public class Calendar {
     @EmbeddedId
     private CalendarID id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "id")
-    @MapsId("id")
-    private User user;
-
     @Enumerated(EnumType.STRING)
     private SelectionMode mode;
 
     @Builder
-    public Calendar(CalendarID id, User user, SelectionMode mode) {
+    public Calendar(CalendarID id, SelectionMode mode) {
         this.id = id;
-        this.user = user;
         this.mode = mode;
     }
 }

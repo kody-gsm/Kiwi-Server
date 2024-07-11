@@ -26,7 +26,7 @@ public class User extends BaseTime{
     private String password;
 
     @Column(name = "school_number")
-    private Short schoolNumber;
+    private String schoolNumber;
 
     @Column(length = 6)
     private String email;
@@ -43,11 +43,8 @@ public class User extends BaseTime{
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Selection selection;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
-    private Calendar calendar;
-
     @Builder
-    public User(Long ID, String username,String password, Short schoolNumber, String email, Role role, Gender gender) {
+    public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender) {
         this.id = ID;
         this.username = username;
         this.password = password;

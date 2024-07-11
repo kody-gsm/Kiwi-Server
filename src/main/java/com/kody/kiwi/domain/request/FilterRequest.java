@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class FilterRequest {
-    private Short grade;
+    private String grade;
     private SelectionMode mode;
 }
