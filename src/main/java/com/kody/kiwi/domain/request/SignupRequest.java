@@ -26,5 +26,5 @@ public class SignupRequest {
     private String gender;
 
     @NotNull(message = "학번이 비어있습니다.")
-    private String schoolNumber;
+    private Short schoolNumber;
 }
