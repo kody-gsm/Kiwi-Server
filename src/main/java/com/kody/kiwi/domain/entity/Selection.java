@@ -21,7 +21,7 @@ public class Selection {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     private User user;
 
     @Enumerated(EnumType.STRING)
