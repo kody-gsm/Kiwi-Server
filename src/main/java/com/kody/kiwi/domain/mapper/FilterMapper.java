@@ -11,12 +11,12 @@ import java.util.List;
 @Mapper
 @Transactional
 public interface FilterMapper {
-    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.school_number >= #{schoolNumber} AND u.school_number <= #{schoolNumber}+418")
-    List<FilterResponse> getFilterGrade(SelectionMode mode, Short schoolNumber);
+    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND LEFT(u.school_number, 1) = LEFT(#{schoolNumber},1)")
+    List<FilterResponse> getFilterGrade(SelectionMode mode, String schoolNumber);
 
-    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.school_number >= #{schoolNumber} AND u.school_number <= #{schoolNumber}+18")
-    List<FilterResponse> getFilterClass(SelectionMode mode, Short schoolNumber);
+    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND LEFT(u.school_number, 2) = LEFT(#{schoolNumber},2)")
+    List<FilterResponse> getFilterClass(SelectionMode mode, String schoolNumber);
 
-    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND u.school_number >= #{schoolNumber} + 1000 AND u.school_number <= #{schoolNumber} + 18 + 1000 OR u.school_number >= #{schoolNumber} + 2000 AND u.school_number <= #{schoolNumber} + 18 + 2000 OR u.school_number >= #{schoolNumber} + 3000 AND u.school_number <= #{schoolNumber} + 18 + 3000")
-    List<FilterResponse> getClassUser(SelectionMode mode,Short schoolNumber);
+    @Select("SELECT u.gender,u.username,u.school_number,s.mode FROM user u NATURAL JOIN selection s WHERE mode = #{mode} AND LEFT(u.school_number, 1) = 1 OR LEFT(u.school_number, 1) = 2 OR LEFT(u.school_number, 1) = 3")
+    List<FilterResponse> getClassUser(SelectionMode mode, String schoolNumber);
 }

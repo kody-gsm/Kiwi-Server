@@ -37,12 +37,12 @@ public class SelectionService {
         calendarService.CalendarMC(id);
     }
 
-    public List<FilterResponse> findByIdAndMode(Short id, SelectionMode mode){
-        if((id == null || id == 0) && mode == null){
+    public List<FilterResponse> findByIdAndMode(String id, SelectionMode mode){
+        if((id == null || id.equals("0")) && mode == null){
             return checkService.allUser();
         } else if (mode == null) {
-            if (id >= 1000){
-                if(id / 100 % 10 != 0){
+            if (Integer.parseInt(id) >= 1000){
+                if(Integer.parseInt(id) / 100 % 10 != 0){
                     return userMapper.getGradeClassUser(id);
                 }
                 else {
@@ -52,12 +52,12 @@ public class SelectionService {
             else{
                 return userMapper.getClassUser(id);
             }
-        } else if (id == null || id == 0) {
+        } else if (id == null || id.equals("0")) {
             return selectionMapper.getModeUser(mode);
         }
         else {
-            if (id >= 1000){
-                if (id / 100 % 10 != 0){
+            if (Integer.parseInt(id) >= 1000){
+                if (Integer.parseInt(id) / 100 % 10 != 0){
                     return filterMapper.getFilterClass(mode,id);
                 }
                 else {
@@ -70,7 +70,7 @@ public class SelectionService {
         }
     }
 
-    public void selectmode(SelectionMode mode, Short sh, LocalDate date){
+    public void selectmode(SelectionMode mode, String sh, LocalDate date){
         Long ID = userRepository.findUserBySchoolNumber(sh).getId();
         Selection selection = Selection.builder()
                 .id(ID)

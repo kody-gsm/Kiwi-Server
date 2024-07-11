@@ -13,6 +13,6 @@ public class McRequest {
     @NotBlank
     private SelectionMode mode;
     @NotNull
-    private Short id;
+    private String id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;}

@@ -23,9 +23,9 @@ public class CheckController {
 
     @PostMapping("/check") //지금은 안 쓰는거 건희가 만들어는 두라고 해서 만듦
     public ResponseEntity<?> check(@RequestBody CheckRequest checkRequest){
-        Short grade = checkRequest.getGrade();
+        String grade = checkRequest.getGrade();
 
-        if (grade == null || grade == 0)
+        if (grade == null || grade.equals("0"))
             return ResponseEntity.ok(checkService.allUser());
         else
             return ResponseEntity.ok(checkService.gradeUser(grade));
@@ -33,15 +33,15 @@ public class CheckController {
 
     @PostMapping("/filter") //filter 기능
     public ResponseEntity<?> filter(@RequestBody FilterRequest filterRequest){
-        Short grade = filterRequest.getGrade();
+        String grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
         System.out.println(grade);
         System.out.println(mode);
 
-        if (grade == null || grade == 0)
+        if (grade == null || grade.equals("0"))
             return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
-        else if (grade < 100 || grade >= 3500)
+        else if (Integer.parseInt(grade) < 100 || Integer.parseInt(grade) >= 3500)
             return ResponseEntity.badRequest().body("잘못된 값입니다.");
         else
             return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
@@ -49,13 +49,13 @@ public class CheckController {
 
     @PostMapping("/alltendance")//일괄 출석
     public ResponseEntity<?> alltendance(@RequestBody CheckRequest checkRequest){
-        Short grade = checkRequest.getGrade();
+        String grade = checkRequest.getGrade();
         System.out.println(grade+"as");
-        if (grade == null || grade == 0) {
+        if (grade == null || grade.equals("0")) {
             checkService.atSelect(grade);
             return ResponseEntity.ok("실행 완료됐습니다.");
         }
-        else if (grade < 100 || grade >= 3500)
+        else if (Integer.parseInt(grade) < 100 || Integer.parseInt(grade) >= 3500)
             return ResponseEntity.badRequest().body("값이 잘못되었습니다.");
         else {
             checkService.atSelect(grade);

@@ -21,7 +21,6 @@ public class UserService {
         Attend attend = user.getAttend();
         Selection selection = user.getSelection();  
         String mode = String.valueOf(selection.getMode());
-        UserResponse userResponse = new UserResponse(
         return new UserResponse(
                 user.getSchoolNumber(),
                 user.getGender().toString(),

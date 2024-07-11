@@ -19,7 +19,6 @@ public class Attend {
 
     @OneToOne(optional = false)
     @JoinColumn(name = "user_id")
-    
     private User user;
 
     private Short attendance; //출석
