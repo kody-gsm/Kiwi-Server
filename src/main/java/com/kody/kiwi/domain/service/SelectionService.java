@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -69,14 +70,14 @@ public class SelectionService {
         }
     }
 
-    public void selectmode(SelectionMode mode){
-        for (long i = 1; i <= userRepository.count(); i++) {
-            Selection selection = Selection.builder()
-                    .id(i)
-                    .mode(mode)
-                    .build();
-            selectionRepository.save(selection);
-            calendarService.CalendarMC(i);
-        }
+    public void selectmode(SelectionMode mode, Short sh, LocalDate date){
+        Long ID = userRepository.findUserBySchoolNumber(sh).getId();
+        Selection selection = Selection.builder()
+                .id(ID)
+                .date(date)
+                .mode(mode)
+                .build();
+        selectionRepository.save(selection);
+        calendarService.CalendarMC(ID);
     }
 }

@@ -21,16 +21,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CalendarService {
     private final CalendarRepository calendarRepository;
-    private final UserRepository userRepository;
     private final SelectionRepository selectionRepository;
     private final CalenderMapper calenderMapper;
 
     public void CalendarMC(Long id){ //selection 바뀔때 이거 넣으면 calendar에 추가 or 수정됨
-        User user = userRepository.findUserById(id);
         Selection selection = selectionRepository.findSelectionById(id);
         CalendarID calendarID = new CalendarID(id,selection.getDate());
         calendarRepository.save(Calendar.builder()
-                        .user(user)
                         .id(calendarID)
                         .mode(selection.getMode())
                 .build());

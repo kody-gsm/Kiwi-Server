@@ -65,11 +65,12 @@ public class CheckController {
 
     @PostMapping("/mc")
     public void mc(@RequestBody McRequest mcRequest){
-        selectionService.selectmode(mcRequest.getMode());
+        selectionService.selectmode(mcRequest.getMode(),mcRequest.getId(),mcRequest.getDate());
     }
 
     @PostMapping("/calendar")
     public ResponseEntity<?> calendar(@RequestBody CalendarRequest calendarRequest){
+        System.out.println(calendarRequest.getDate());
         return ResponseEntity.ok(calendarService.getCalendars(calendarRequest.getDate()));
     }
 }

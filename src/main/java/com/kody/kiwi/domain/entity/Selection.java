@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Table
 @NoArgsConstructor
 @Getter
+@Setter
 public class Selection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,19 +29,10 @@ public class Selection {
 
     private LocalDate date;
 
-    @PrePersist
-    public void prePersist() {
-        date = LocalDate.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        date = LocalDate.now();
-    }
-
     @Builder
-    public Selection(User user,Long id,SelectionMode mode) {
+    public Selection(User user, Long id, SelectionMode mode, LocalDate date) {
         this.id = id;
+        this.date = date != null ? date : LocalDate.now();
         this.user = user;
         this.mode = mode;
     }
