@@ -10,6 +10,7 @@ import com.kody.kiwi.domain.service.CheckService;
 import com.kody.kiwi.domain.service.SelectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,8 +64,11 @@ public class CheckController {
         }
     }
 
-    @PostMapping("/mc")
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('TEACHER')")
+    @PostMapping("/mc")//변환시킬때 권한 필요 (나중에 추가)
     public void mc(@RequestBody McRequest mcRequest){
+        System.out.println(mcRequest.getMode());
+        System.out.println(mcRequest.getId());
         selectionService.selectmode(mcRequest.getMode(),mcRequest.getId(),mcRequest.getDate());
     }
 
