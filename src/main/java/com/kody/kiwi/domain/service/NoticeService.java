@@ -10,22 +10,20 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 @Service
 public class NoticeService {
-
 
     @Autowired
     private NoticeMapper noticeMapper;
 
     public List<NoticeResponse> getAllNotices() {
-        List<Notice> notices = noticeMapper.getAllNotices();
-        return notices.stream().map(this::toResponse).collect(Collectors.toList());
+        return noticeMapper.getAllNotices();
     }
 
     public Optional<NoticeResponse> getNoticeById(Long id) {
-        Notice notice = noticeMapper.getNoticeById(id);
-        return Optional.ofNullable(notice).map(this::toResponse);
+        NoticeResponse notice = noticeMapper.getNoticeById(id);
+        return Optional.ofNullable(notice);
     }
 
     public NoticeResponse createNotice(NoticeRequest noticeRequest) {
@@ -39,21 +37,22 @@ public class NoticeService {
     }
 
     public NoticeResponse updateNotice(Long id, NoticeRequest noticeRequest) {
-        Notice notice = noticeMapper.getNoticeById(id);
-        if (notice == null) {
+        NoticeResponse noticeResponse = noticeMapper.getNoticeById(id);
+        if (noticeResponse == null) {
             throw new RuntimeException("Notice not found");
         }
 
+        Notice notice = toEntity(noticeResponse);
         notice.setTitle(noticeRequest.getTitle());
         notice.setContent(noticeRequest.getContent());
 
         noticeMapper.updateNotice(notice);
-        return toResponse(notice);
+        return noticeMapper.getNoticeById(id);
     }
 
     public void deleteNotice(Long id) {
-        Notice notice = noticeMapper.getNoticeById(id);
-        if (notice == null) {
+        NoticeResponse noticeResponse = noticeMapper.getNoticeById(id);
+        if (noticeResponse == null) {
             throw new RuntimeException("Notice not found");
         }
 
@@ -65,7 +64,16 @@ public class NoticeService {
         response.setId(notice.getId());
         response.setTitle(notice.getTitle());
         response.setContent(notice.getContent());
-        response.setCreatedAt(notice.getCreatedAt());
+        response.setCreated_at(notice.getCreatedAt());
         return response;
+    }
+
+    private Notice toEntity(NoticeResponse response) {
+        Notice notice = new Notice();
+        notice.setId(response.getId());
+        notice.setTitle(response.getTitle());
+        notice.setContent(response.getContent());
+        notice.setCreatedAt(response.getCreated_at());
+        return notice;
     }
 }

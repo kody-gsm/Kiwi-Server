@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class User extends BaseTime{
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Selection selection;
+
 
     @Builder
     public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender) {
