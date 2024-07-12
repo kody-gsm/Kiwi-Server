@@ -54,6 +54,7 @@ public class WebSecurityConfig {
                         config.setAllowedHeaders(Collections.singletonList("*"));
                         config.setExposedHeaders(List.of("Authorization"));
                         config.setMaxAge(3600L);
+
                         return config;
                     }
                 }))

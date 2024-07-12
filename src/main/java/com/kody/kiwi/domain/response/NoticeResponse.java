@@ -8,5 +8,5 @@ public class NoticeResponse {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 }
