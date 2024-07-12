@@ -64,9 +64,9 @@ public class ApplicationService {
         User user = authService.getCurrentUser();
         String schoolNumber = user.getSchoolNumber();
         String userName = user.getUsername();
-         ServiceError serviceError = ServiceError.builder()
+        ServiceError serviceError = ServiceError.builder()
                 .schoolNumber(schoolNumber)
-                 .userName(userName)
+                .userName(userName)
                 .title(request.getTitle())
                 .content(request.getContent())
                 .build();

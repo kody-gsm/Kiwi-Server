@@ -20,6 +20,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
+
+
 import java.util.Collections;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
+
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
@@ -37,6 +40,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/user/mypage").hasRole("STUDENT")
+                        .requestMatchers("/api/notices/**").hasRole("ADMIN") // 공지 페이지 엔드포인트에 대한 권한 추가
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -50,9 +54,11 @@ public class WebSecurityConfig {
                         config.setAllowedHeaders(Collections.singletonList("*"));
                         config.setExposedHeaders(List.of("Authorization"));
                         config.setMaxAge(3600L);
+
                         return config;
                     }
                 }))
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
