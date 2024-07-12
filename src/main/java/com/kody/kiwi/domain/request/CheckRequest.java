@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CheckRequest {
-    private Short grade;
+    private String grade;
 }

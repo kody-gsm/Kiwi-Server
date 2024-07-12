@@ -18,12 +18,12 @@ public interface SelectionMapper {
     @Update("UPDATE selection SET mode = 'ATTENDANCE'")
     void alltendance();
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE u.school_number >= #{schoolNumber} AND u.school_number <= #{schoolNumber} + 418")
-    void gradance(Short grade);
+    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = LEFT(#{schoolNumber},1)")
+    void gradance(String grade);
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE u.school_number >= #{schoolNumber} AND u.school_number <= #{schoolNumber} + 18")
-    void clgradance(Short grade);
+    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 2) = LEFT(#{schoolNumber},2)")
+    void clgradance(String grade);
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE u.school_number >= #{schoolNumber} + 1000 AND u.school_number <= #{schoolNumber} + 18 + 1000 OR u.school_number >= #{schoolNumber} + 2000 AND u.school_number <= #{schoolNumber} + 18 + 2000 OR u.school_number >= #{schoolNumber} + 3000 AND u.school_number <= #{schoolNumber} + 18 + 3000")
-    void clattdance(Short grade);
+    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = 1 OR LEFT(u.school_number, 1) = 2 OR LEFT(u.school_number, 1) = 3")
+    void clattdance(String grade);
 }

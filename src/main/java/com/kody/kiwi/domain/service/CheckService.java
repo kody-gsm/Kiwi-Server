@@ -19,7 +19,7 @@ public class CheckService {
         return userMapper.getAllUser();
     }
 
-    public List<FilterResponse> gradeUser(Short grade){
+    public List<FilterResponse> gradeUser(String grade){
         return userMapper.getGradeUser(grade);
     }
 
@@ -27,11 +27,11 @@ public class CheckService {
         selectionMapper.alltendance();
     }
     
-    public void atSelect(Short sh){
-        if (sh == null || sh == 0){
+    public void atSelect(String sh){
+        if (sh == null || sh.equals("0")){
             alltendance();
-        } else if (sh >= 1000) {
-            if (sh / 100 % 10 != 0){
+        } else if (Integer.parseInt(sh) >= 1000) {
+            if (Integer.parseInt(sh) / 100 % 10 != 0){
                 selectionMapper.clgradance(sh);
             }
             else {
