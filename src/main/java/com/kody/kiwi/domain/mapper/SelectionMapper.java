@@ -18,12 +18,14 @@ public interface SelectionMapper {
     @Update("UPDATE selection SET mode = 'ATTENDANCE'")
     void alltendance();
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = LEFT(#{schoolNumber},1)")
+    @Update("UPDATE selection NATURAL JOIN kiwi.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = LEFT(#{schoolNumber},1)")
     void gradance(String grade);
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 2) = LEFT(#{schoolNumber},2)")
+    @Update("UPDATE selection NATURAL JOIN kiwi.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 2) = LEFT(#{schoolNumber},2)")
     void clgradance(String grade);
 
-    @Update("UPDATE selection NATURAL JOIN kody.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = 1 OR LEFT(u.school_number, 1) = 2 OR LEFT(u.school_number, 1) = 3")
+    @Update("UPDATE selection NATURAL JOIN kiwi.user u SET mode = 'ATTENDANCE' WHERE LEFT(u.school_number, 1) = 1 OR LEFT(u.school_number, 1) = 2 OR LEFT(u.school_number, 1) = 3")
     void clattdance(String grade);
+
+//    kody가 없는데 kody로 하드코딩 되어서 나는 kody를 kiwi로 바꿈
 }

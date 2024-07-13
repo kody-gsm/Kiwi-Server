@@ -53,8 +53,8 @@ public class AuthService {
     @Transactional
     public SigninResponse signinUser(SigninRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("유저가 없습니다"));
-//        if (!passwordEncoder.matches(request.getPassword(), user.getPassword()))
-//            throw new PasswordExpiredException();
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword()))
+            throw new PasswordExpiredException();
         String id = user.getId().toString();
         String password = user.getPassword();
         Role role = Role.valueOf((String.valueOf(user.getRole())));
