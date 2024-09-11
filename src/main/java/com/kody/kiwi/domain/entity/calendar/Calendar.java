@@ -1,6 +1,5 @@
 package com.kody.kiwi.domain.entity.calendar;
 
-import com.kody.kiwi.domain.entity.User;
 import com.kody.kiwi.domain.entity.enums.SelectionMode;
 import jakarta.persistence.*;
 import lombok.Builder;
