@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.response;
 
 import lombok.AllArgsConstructor;
@@ -10,3 +11,4 @@ public class ServiceErrorResponse {
     private String userName;
     private String schoolNumber;
 }
+*/

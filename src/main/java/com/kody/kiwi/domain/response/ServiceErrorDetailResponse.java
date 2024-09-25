@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.response;
 
 import lombok.AllArgsConstructor;
@@ -12,3 +13,4 @@ public class ServiceErrorDetailResponse {
     private String title;
     private String content;
 }
+*/
