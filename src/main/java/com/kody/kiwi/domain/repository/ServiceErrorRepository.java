@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.repository;
 
 import com.kody.kiwi.domain.entity.Absent;
@@ -12,3 +13,4 @@ public interface ServiceErrorRepository extends JpaRepository<ServiceError, Long
     List<ServiceError> findAllByOrderByCreatedAtDesc();
 }
 
+*/

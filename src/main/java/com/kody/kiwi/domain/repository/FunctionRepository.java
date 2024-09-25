@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.repository;
 
 import com.kody.kiwi.domain.entity.Function;
@@ -10,3 +11,4 @@ import java.util.List;
 public interface FunctionRepository extends JpaRepository<Function, Long> {
     List<Function> findAllByOrderByCreatedAtDesc();
 }
+*/
