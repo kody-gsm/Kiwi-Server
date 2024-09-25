@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.entity;
 
 import jakarta.persistence.*;
@@ -29,3 +30,4 @@ public class ServiceError extends BaseTime{
     @Column
     private String content;
 }
+*/

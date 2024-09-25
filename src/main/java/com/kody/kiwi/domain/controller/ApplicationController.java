@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.controller;
 
 import com.kody.kiwi.domain.request.AbsentRequest;
@@ -61,3 +62,4 @@ public class ApplicationController {
         return applicationService.getServiceError(id);
     }
 }
+*/

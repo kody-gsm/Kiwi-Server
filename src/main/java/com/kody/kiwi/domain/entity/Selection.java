@@ -1,6 +1,5 @@
 package com.kody.kiwi.domain.entity;
 
-
 import com.kody.kiwi.domain.entity.enums.SelectionMode;
 import jakarta.persistence.*;
 import lombok.Builder;

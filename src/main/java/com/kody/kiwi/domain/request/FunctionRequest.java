@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.request;
 
 import jakarta.validation.constraints.NotBlank;
@@ -16,3 +17,4 @@ public class FunctionRequest {
     @NotBlank
     private String affiliation;
 }
+*/

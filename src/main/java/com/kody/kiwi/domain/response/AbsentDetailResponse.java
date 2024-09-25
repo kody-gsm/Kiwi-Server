@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.response;
 
 import lombok.AllArgsConstructor;
@@ -13,4 +14,4 @@ public class AbsentDetailResponse {
     private String content;
     private String started_at;
     private String ended_at;
-}
+}*/

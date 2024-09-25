@@ -1,3 +1,4 @@
+/*
 package com.kody.kiwi.domain.request;
 
 import jakarta.validation.constraints.NotBlank;
@@ -18,3 +19,4 @@ public class AbsentRequest {
     @NotBlank
     private String ended_at;
 }
+*/
