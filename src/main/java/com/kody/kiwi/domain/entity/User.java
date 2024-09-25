@@ -2,6 +2,7 @@ package com.kody.kiwi.domain.entity;
 import com.kody.kiwi.domain.entity.calendar.Calendar;
 import com.kody.kiwi.domain.entity.enums.Gender;
 import com.kody.kiwi.domain.entity.enums.Role;
+import com.kody.kiwi.domain.entity.enums.SelectionMode;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +39,9 @@ public class User extends BaseTime{
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Enumerated(EnumType.STRING)
+    private SelectionMode mode;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Attend attend;
 
@@ -54,5 +58,6 @@ public class User extends BaseTime{
         this.email = email;
         this.role = role;
         this.gender = gender;
+        this.mode = SelectionMode.ATTENDANCE;
     }
 }

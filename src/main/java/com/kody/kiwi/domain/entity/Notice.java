@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Table(name = "notice")
 @Data
-public class Notice {
+public class Notice extends BaseTime{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,12 +20,4 @@ public class Notice {
 
     @Column(nullable = false)
     private String content;
-
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
 }

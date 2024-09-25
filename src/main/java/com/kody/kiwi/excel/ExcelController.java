@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+//try catch문 쓰는게 좋다고 하고 안 쓸거면 알아서 하셈
 @RestController()
-@RequestMapping("/excel_do")
+@RequestMapping("/excel")
 public class ExcelController {
 
     @PostMapping("xss")
