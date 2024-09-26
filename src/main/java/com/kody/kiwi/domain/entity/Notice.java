@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 
 @Entity
-
 @Table(name = "notice")
 @Data
 public class Notice extends BaseTime{

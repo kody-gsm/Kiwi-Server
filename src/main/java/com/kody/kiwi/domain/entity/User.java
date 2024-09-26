@@ -50,7 +50,7 @@ public class User extends BaseTime{
 
 
     @Builder
-    public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender) {
+    public User(Long ID, String username,String password, String schoolNumber, String email, Role role, Gender gender, SelectionMode mode) {
         this.id = ID;
         this.username = username;
         this.password = password;
@@ -58,6 +58,6 @@ public class User extends BaseTime{
         this.email = email;
         this.role = role;
         this.gender = gender;
-        this.mode = SelectionMode.ATTENDANCE;
+        this.mode = (mode != null) ? mode : SelectionMode.ATTENDANCE;
     }
 }
