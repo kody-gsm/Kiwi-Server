@@ -18,6 +18,6 @@ public class ReservationController {
     @PostMapping("/reservation")
     public ResponseEntity<String> reservation(@RequestBody ReservationRequest request){
         reservationService.reserve(request.getSchoolId(),request.getMode(),request.getReservationDate());
-        return ResponseEntity.ok("asdf");
+        return ResponseEntity.ok("Success");
     }
 }
