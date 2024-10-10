@@ -22,15 +22,20 @@ public class ReservationService {
     @Autowired
     ReservationRepository reservationRepository;
 
-    public void reserve(String schoolNum, SelectionMode mode, LocalDate date) {
+    public void reserve(String schoolNum, SelectionMode mode, LocalDate date) throws Exception{
         Reservation reservation = Reservation.builder()
                 .schoolNum(schoolNum)
                 .date(date)
                 .build();
+        if(userRepository.findUserBySchoolNumber(schoolNum) == null){
+            throw new Exception("We can't find any user");
+        }
+
         User user = User.builder()
                 .schoolNumber(schoolNum)
                 .mode(mode)
                 .build();
+
         reservationRepository.save(reservation);
         userRepository.save(user);
     }
