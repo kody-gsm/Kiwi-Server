@@ -27,12 +27,19 @@ public class ReservationService {
                 .schoolNum(schoolNum)
                 .date(date)
                 .build();
-        if(userRepository.findUserBySchoolNumber(schoolNum) == null){
+        User user = userRepository.findUserBySchoolNumber(schoolNum);
+        if(user == null){
             throw new Exception("We can't find any user");
         }
 
-        User user = User.builder()
-                .schoolNumber(schoolNum)
+        user = User.builder()
+                .ID(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .gender(user.getGender())
+                .schoolNumber(user.getSchoolNumber())
                 .mode(mode)
                 .build();
 
