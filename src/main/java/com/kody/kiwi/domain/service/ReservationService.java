@@ -55,7 +55,14 @@ public class ReservationService {
         for(Reservation reser : reservation) {
             LocalDate date = reser.getDate();
             if(today.isBefore(date) || today.isEqual(date)) {
-                User user =  User.builder()
+                User user = userRepository.findUserBySchoolNumber(reser.getSchoolNum());
+                user =  User.builder()
+                        .ID(user.getId())
+                        .username(user.getUsername())
+                        .email(user.getEmail())
+                        .password(user.getPassword())
+                        .role(user.getRole())
+                        .gender(user.getGender())
                         .schoolNumber(reser.getSchoolNum())
                         .mode(SelectionMode.ATTENDANCE)
                         .build();
