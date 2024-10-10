@@ -4,6 +4,7 @@ import com.kody.kiwi.domain.entity.enums.Gender;
 import com.kody.kiwi.domain.entity.enums.Role;
 import com.kody.kiwi.domain.entity.enums.SelectionMode;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -17,7 +17,11 @@ public class ReservationController {
     ReservationService reservationService;
     @PostMapping("/reservation")
     public ResponseEntity<String> reservation(@RequestBody ReservationRequest request){
-        reservationService.reserve(request.getSchoolId(),request.getMode(),request.getReservationDate());
-        return ResponseEntity.ok("asdf");
+        try {
+            reservationService.reserve(request.getSchoolId(),request.getMode(),request.getReservationDate());
+            return ResponseEntity.ok("Success");
+        }catch(Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
