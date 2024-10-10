@@ -1,25 +1,23 @@
 package com.kody.kiwi.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
-@Table
+@Table(name = "reservation")
 @Entity
 @Getter
 @RequiredArgsConstructor
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String schoolNum;
+
     private LocalDate date;
 
     @Builder
