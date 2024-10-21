@@ -3,7 +3,7 @@
 #기능
 
 1. 예약기능
--Request : Sring으로 y M d랑  학번이랑 상태를 받음("yyyy-MM-dd")\n
+-Request : Sring으로 y M d랑  학번이랑 상태를 받음("yyyy-MM-dd")
 Ex) reservationDate : "2024-10-21" schoolId : "2101", mode : "leave"
 -하는 일 : reservationDate까지 mode로 바꿈
 Ex) 2024년 10월 21일까지 leave로 바꿈
