@@ -36,9 +36,6 @@ public class CheckController {
         String grade = filterRequest.getGrade();
         SelectionMode mode = filterRequest.getMode();
 
-        System.out.println(grade);
-        System.out.println(mode);
-
         if (grade == null || grade.equals("0"))
             return ResponseEntity.ok(selectionService.findByIdAndMode(grade,mode));
         else if (Integer.parseInt(grade) < 100 || Integer.parseInt(grade) >= 3500)
