@@ -1,5 +1,4 @@
 # New Kiwi Backend
-웹훅 테스트
 #기능
 
 1. 예약기능  
