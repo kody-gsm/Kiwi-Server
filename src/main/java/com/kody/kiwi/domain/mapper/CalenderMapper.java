@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper
 @Transactional
 public interface CalenderMapper {
-    @Select("SELECT u.gender,u.username,u.school_number,c.mode,c.date FROM user u NATURAL JOIN calendar c WHERE c.date = #{date}")
+    @Select("SELECT u.gender,u.username,u.school_number,c.mode,c.date FROM kiwiuser u NATURAL JOIN calendar c WHERE c.date = #{date}")
     List<CalendarResponse> FindAllByDate(LocalDate date);
 }
