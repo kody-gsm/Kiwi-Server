@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "KiwiUser")
+@Table(name = "kiwi_user")
 @NoArgsConstructor
 @Getter
 public class User extends BaseTime{
